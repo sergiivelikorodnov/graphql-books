@@ -1,5 +1,5 @@
 const express = require('express')
-const graphqlHTTP = require('express-graphql')
+var { graphqlHTTP } = require('express-graphql')
 const cors = require('cors')
 const { buildSchema } = require('graphql')
 const { readFileSync } = require('fs')
@@ -50,3 +50,16 @@ const root = {
     return true
   }
 }
+
+const app = express()
+app.use(cors())
+
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema: schema,
+    rootValue: root,
+    graphiql: true
+  })
+)
+app.listen(4000, () => console.log('Now browse to localhost:4000/graphql'))
