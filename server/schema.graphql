@@ -16,6 +16,10 @@ input BookInput {
   description: String!
 }
 
+input BookId {
+  id: ID!
+}
+
 type Query {
   getAllBooks: [Book]!
   getBook(id: ID!): Book!
@@ -23,4 +27,5 @@ type Query {
 
 type Mutation {
   addBook(book: BookInput!): Boolean!
+  deleteBook(id: BookId!): Boolean!
 }

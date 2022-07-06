@@ -12,7 +12,7 @@ function App(): JSX.Element {
       <h1>Add Book</h1>
       <AddBook />
 
-      <h1>List Book</h1>
+      <h1>List Books</h1>
       <AllBooks onSelect={book => setSelectedBookId(book.id)} />
 
       <h1>Selected Book</h1>

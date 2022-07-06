@@ -7,7 +7,9 @@ const { readFileSync } = require('fs')
 const schemaString = readFileSync('./schema.graphql', { encoding: 'utf8' })
 const schema = buildSchema(schemaString)
 
-const allBooks = [
+let id = 2
+
+let allBooks = [
   {
     id: '1',
     title: 'Book 1',
@@ -38,8 +40,9 @@ const root = {
     return allBooks.find(({ id }) => params.id === id)
   },
   addBook: params => {
+    id++
     allBooks.push({
-      id: (allBooks.length + 1).toString(),
+      id: id.toString(),
       ...params.book,
       author: {
         id: '1',
@@ -47,6 +50,10 @@ const root = {
         lastName: 'Velikorodnov'
       }
     })
+    return true
+  },
+  deleteBook: params => {
+    allBooks = allBooks.filter(({ id }) => id !== params.id.id)
     return true
   }
 }
