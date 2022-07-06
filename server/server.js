@@ -39,7 +39,7 @@ const root = {
   },
   addBook: params => {
     allBooks.push({
-      id: allBooks.length + 1,
+      id: (allBooks.length + 1).toString(),
       ...params.book,
       author: {
         id: '1',
